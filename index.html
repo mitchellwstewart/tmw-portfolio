@@ -2,11 +2,59 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
   <title>Bundled Page</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #f7f9fb; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
     #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    @media (max-width: 768px) {
+      body { align-items: flex-start !important; }
+      /* Intro */
+      [data-screen-label="Intro"] {
+        grid-template-columns: 1fr !important;
+        padding: 32px 20px 16px !important;
+        gap: 16px !important;
+      }
+      [data-screen-label="Intro"] > div:last-child { align-items: flex-start !important; }
+      [data-screen-label="Intro"] h1 { font-size: 22px !important; }
+      [data-screen-label="Intro"] + div { margin: 20px 20px !important; }
+      /* Project rows: stack sidebar above images */
+      [data-screen-label]:not([data-screen-label="Intro"]):not([data-screen-label="Footer"]) {
+        grid-template-columns: 1fr !important;
+        padding: 8px 20px 40px !important;
+        gap: 20px !important;
+      }
+      [data-screen-label]:not([data-screen-label="Intro"]):not([data-screen-label="Footer"]) > div:first-child {
+        position: relative !important;
+        top: auto !important;
+      }
+      /* Main image height */
+      [data-screen-label]:not([data-screen-label="Intro"]):not([data-screen-label="Footer"]) > div:last-child > div:first-child {
+        height: 56vw !important;
+        min-height: 200px !important;
+      }
+      /* Sub-image heights */
+      [data-screen-label]:not([data-screen-label="Intro"]):not([data-screen-label="Footer"]) > div:last-child > div:not(:first-child) {
+        height: 36vw !important;
+        min-height: 120px !important;
+      }
+      /* Footer */
+      [data-screen-label="Footer"] {
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 24px 20px !important;
+      }
+      /* Lightbox: shrink arrows and pull them closer so image gets max width */
+      button[aria-label="Previous image"],
+      button[aria-label="Next image"] {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+      }
+      button[aria-label="Previous image"] { left: 10px !important; }
+      button[aria-label="Next image"]     { right: 10px !important; }
+    }
     #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f7f9fb; z-index: 9999; }
     #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
     #__bundler_placeholder { color: #999; font-size: 14px; }
